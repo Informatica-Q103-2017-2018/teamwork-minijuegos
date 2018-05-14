@@ -1,12 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>// esto es para las tildes
+#include <time.h>
+#include <conio.h>//La funcion getche() lee caracter a caracter y muestra por pantalla el caracter leido.
+#include <string.h>
+
 int main()
 {
-char nombre[16];
-char primero[9]="ahorcado";
-char segundo[16]="hundir la flota";
-char tercero[5]="stop";
-char a,r;
-int i=0,b;
+setlocale(LC_CTYPE,"Spanish");// esto tambien es para poner las tildes
+   char a,r;
+int c,b;
 
 	printf("MINIJUEGOS\n");
 	printf("NOTA: CUALQUIERA DE LOS JUEGOS PUEDE PEDIRLE AL USUARIO UN REGISTRO PREVIO.\n");
@@ -23,6 +26,17 @@ do
 		case 'A':
 		case 'a':
 			printf("Usted ha elegido AHORCADO\n");
+			printf("Bienvenido al ahorcado, pulse 'R' si quiere saber las reglas del juego\n");
+			scanf("%c",&r);
+			if(r=='R')
+			{
+				printf("El objetivo de este juego es descubrir una palabra adivinando las letras que la componen.\n");
+				printf("A cada ronda, los jugadores escogerán simultáneamente una letra que crean que pueda formar parte de la palabra.");
+				printf("Si la palabra contiene la letra escogida, se mostrará en qué posición/es está.\n");
+				printf("En el caso de que la letra no exista en la palabra, se dibujará una parte del cuerpo del muñeco del jugador. \nCuando estén dibujadas las 6 partes del cuerpo del muñeco, el jugador se quedará fuera de la partida.");
+			}
+			// Posiciones: '0'=desocupado | '1'=Hay barco | '2'=Barco destruido
+
 			break;
 		case 'H':
 		case 'h':
@@ -31,25 +45,49 @@ do
 			scanf("%c",&r);
 			if(r=='R')
 			{
-			printf("El  juego  consiste  en  hundir  la  flota  del contrincante(el programa).\n Para  ello,  debe  colocar  su propia flota de forma estratégica y encontrar y hundir con los disparos la flota contraria\n");
-			printf("Cada  uno  de  los  jugadores  dispone  de  dos  cuadrículas : en una debe colocar sus barcos y en la otra irá anotando los resultados de los disparos que realiza en cada turno\n");
-			printf("Cada jugador  debe  colocar  en uno  de  los cuadros los  siguientes  barcos en  posición horizontal o vertical\n");
-			printf(" 1 barco que ocupa 4 cuadrados.\n 1 barcos de tres cuadros.\n 2 barcos de 2 cuadros.\n 2 barcos que ocupe 1 cuadro ");
-			printf("Cada jugador spone de un turno de disparo que se irá alternando\n. Para hacerlo dirá las coordenadas.  Por  ejemplo “B3”, significa que su disparo corresponde a la casilla que se encuentra en esa coordenada. ");
+			 printf("El  juego  consiste  en  hundir  la  flota  del contrincante(el programa).\n Para  ello,  debe  colocar  su propia flota de forma estratégica y encontrar y hundir con los disparos la flota contraria\n");
+			 printf("Cada jugador  debe  colocar  en uno  de  los cuadros los  barcos \n");
+			 printf("Cada jugador pone de un turno de disparo que se irá alternando\n. Para hacerlo dirá las coordenadas.  Por  ejemplo “B3”, significa que su disparo corresponde a la casilla que se encuentra en esa coordenada. ");
 		    }
+		    printf("\nPulse 1 para jugar\nPulse 2 para salir");
+		    scanf("%i", &c);
+		    fflush(stdin);
+		        switch(c)
+                  { 
+                     case 1:
+                     {
+                     	
+                    break;
+                     }
+                     case 2:
+                     	return 0;
+                    break;
+		           }
 		    
 			break;
 		case 'S':
 		case 's':
 			printf("Usted ha elegido STOP");
+				printf("Usted ha elegido STOP\n");
+			printf("Bienvenido a stop, pulse 'R' si quiere saber las reglas del juego\n");
+			scanf("%c",&r);
+			if(r=='R')
+			{
+			 printf("El objetivo del juego será obtener la mayor puntuación posible.\n Aparecerá una letra aleatoria y el jugador deberá escribir una palabra de cada categoría\n");
+			 printf("La palabra introducida por el jugador será puntuada si el prograa la considera apta");
+			}
 			break;
 		default: 
 		    printf("Error. pulse de nuevo la tecla\n");
 		    b=0;
 	}
-	}
+}
+	
 	while (b==0);
 
 
 	return 0;
 }
+
+
+
