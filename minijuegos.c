@@ -55,7 +55,6 @@ do
 				printf("Si la palabra contiene la letra escogida, se mostrará en qué posición/es está.\n");
 				printf("En el caso de que la letra no exista en la palabra, se dibujará una parte del cuerpo del muñeco del jugador. \nCuando estén dibujadas las 6 partes del cuerpo del muñeco, el jugador se quedará fuera de la partida.");
 			}
-			// Posiciones: '0'=desocupado | '1'=Hay barco | '2'=Barco destruido
 
 			break;
 		case 'H':
@@ -67,7 +66,7 @@ do
 			{
 			 printf("El  juego  consiste  en  hundir  la  flota  del contrincante(el programa).\n Para  ello,  debe  colocar  su propia flota de forma estratégica y encontrar y hundir con los disparos la flota contraria\n");
 			 printf("Cada jugador  debe  colocar  en uno  de  los cuadros los  barcos \n");
-			 printf("Cada jugador pone de un turno de disparo que se irá alternando\n. Para hacerlo dirá las coordenadas.  Por  ejemplo “B3”, significa que su disparo corresponde a la casilla que se encuentra en esa coordenada. ");
+			 printf("Cada jugador pone de un turno de disparo que se irá alternando.\n Para hacerlo dirá las coordenadas.  Por  ejemplo “B3”, significa que su disparo corresponde a la casilla que se encuentra en esa coordenada. ");
 		    } 
 		    printf("\n\n\n\t\tPulse 1 para jugar\n\n\n\t\tPulse 2 para salir");
 		    scanf("%i", &c);
@@ -138,12 +137,7 @@ do
 				               opcion2=j;
 				               imprimir();
 				               jugador[opcion1][opcion2]=auxiliar;
-				               
-				             auxiliar=jugador[opcion1][opcion2];
-                             programa[opcion1][opcion2]=3;
-                             imprimir();
-                             programa[opcion1][opcion2]=auxiliar; 
-							   
+				             
 				               if(jugador[opcion1][opcion2]==1)
 				               {
 				                   printf("\n El oponente ha acertado!!\n\n");
