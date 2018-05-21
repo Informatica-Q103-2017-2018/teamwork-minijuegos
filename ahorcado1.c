@@ -7,41 +7,42 @@ char matriz[9][7]={
  "____",
  "|  |",
  "|  |",
- "|",
- "|",
- "|",
- "|",
- "|",
+ "|   ",
+ "|   ",
+ "|   ",
+ "|   ",
+ "|   ",
  "----",
 };
-	struct cuerpo
+	typedef struct
 	{
- int s;
- char part[5];
-}
-cuerpo[7]={{3,"O"},{4,"/"},{4,"|"},
-{4,"\\"},{5,"|"},{6,"/"},{6,"\\"}};
+int pos;
+int j;
+char c;
+} cuerpo;
 
 int main() {
 
     char lt;
     int longi,i,n,r,k,j,inicio,correcto=0,temp=0,oportunidades=7;
     int repetido=0,gano=0;
-    
+    cuerpo o[] ={
+				{3, 3, 'O'},
+				{4, 3,'|'}, 
+				{4, 2,'/'},
+				{4, 4,'\\'},
+				{5, 3, '|'},
+				{6, 2,'/'},
+				{6, 4,'\\'}
+				};
+
     printf("\tEl Ahorcado\n");
-    printf("Introduzca la palabra que quiere adivinar: ");
-    printf(" %d", matriz[9][7]);
-   
-for(i=0;i<9;i++)
-{
-for(j=0;j<7;j++)
-{
-printf("%s",matriz[j]);
-}
-printf("\n");
-}
+    printf("Introduzca la palabra que quiere adivinar: \n");
+    for(i=0;i<9;i++){
+		printf("%s\n",matriz[i]);
+	}
+
 	gets(palabra);
-    
     
     longi = 0;
     inicio = 0;
@@ -50,9 +51,10 @@ printf("\n");
     rep[0] = ' ';
     rep[1] = '\0';
     
-    
+    printf("Introduzca una letra:");
+    scanf("\n%c",&lt);
     do {
-                
+        temp = 0;
         tmp[0]=0;
     
         if(inicio == 0) 
@@ -89,13 +91,14 @@ printf("\n");
                     if(palabra[i] == lt) {
              tmp[i] = lt;
               correcto++;
-              tmp[i]=1;
+              temp = 1;
             } 
           }
         }
         
         if(repetido == 0) {
-         if(tmp == 0) {
+         if(temp == 0) {
+           matriz[o[7-oportunidades].pos][o[7-oportunidades].j] = o[7-oportunidades].c;
            oportunidades = oportunidades - 1;
          }
         }
@@ -130,11 +133,13 @@ printf("\n");
         {
            break;
         } 
-      
+      	for(i=0;i<9;i++){
+		printf("%s\n",matriz[i]);
+		}
         printf("Introduzca una letra:");
         scanf("\n%c",&lt);
        
-    }while(oportunidades != 0);
+    }while(oportunidades != 0); 
     
     
     if(gano) {
@@ -143,6 +148,9 @@ printf("\n");
     }
     else {
                 printf("\n\n");
+        for(i=0;i<9;i++){
+		printf("%s\n",matriz[i]);
+		}
         printf("Game over");
     }
     
