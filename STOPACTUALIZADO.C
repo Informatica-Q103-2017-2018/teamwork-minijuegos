@@ -11,7 +11,7 @@ int main()
 	tiempo=0;
 	while(1)
 	{
-		printf("¿Estas preparado...?");
+		printf("Â¿Estas preparado...?");
 		ultimaletra='a'+(rand()%26);
 		printf("La letra es:%c\n",ultimaletra);
 		printf("Date prisa,solo tienes 60 segundos!!");
@@ -20,7 +20,7 @@ int main()
 			tiempo=tiempo+1;
 			printf(""+crono);
 		}
-		printf("¡¡Se acabo el tiempo,valida tus respuestas!!");
+		printf("Â¡Â¡Se acabo el tiempo,valida tus respuestas!!");
 		printf("Nombre:");
 		scanf("%s",&nombre);
 		printf("Apellido:");
