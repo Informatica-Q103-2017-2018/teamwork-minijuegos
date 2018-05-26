@@ -17,8 +17,8 @@ int main()
 	clock_t inicio,fin;
 	int puntuacion=0;
 	char ultimaletra;
-	char nombre[25],apellido[25],color[25],animal[25],pais[25],marca[25];
-    char *nombre1 = nombre;
+	char nombres[25],apellido[25],color[25],animal[25],pais[25],marca[25];
+    char *nombres1 = nombres;
 	char *apellido1 = apellido;
 	char *color1 = color;
 	char *animal1 = animal;
@@ -31,9 +31,9 @@ int main()
 		srand(time(NULL));
 		ultimaletra='a'+(rand()%(('z'-'a')+1));//La letra la elige el ordenador al azar
 		printf("La letra es:%c\n",ultimaletra);
-		printf("Date prisa,solo tienes 60 segundos!!\n");
+		printf("Date prisa,solo tienes 100 segundos!!\n");
 	printf("\nNombre:"); 
-	scanf("%s",&nombre);
+	scanf("%s",&nombres);
 	inicio=clock();
 	printf ( " \n Tiempo transcurrido = % .1f segundos \n " , (inicio)/(double)CLOCKS_PER_SEC);
 	printf("\nApellido:");
@@ -56,7 +56,7 @@ int main()
 	scanf("%s",&marca);
     fin=clock();
     printf ( " \n Tiempo transcurrido = % .1f segundos \n " , (fin)/(double)CLOCKS_PER_SEC);
-		if(*nombre1 == ultimaletra)
+		if(*nombres1 == ultimaletra)
 		puntuacion=puntuacion+1;
 	
 	if(*apellido1 == ultimaletra)
@@ -83,7 +83,7 @@ int main()
 		
 	time(&end); //El tiempo se para
 	//printf("Pulsa enter para empezar otra ronda:");
-	scanf("%s",&nombre);
+	scanf("%s",&nombres);
 
 
 return 0;}

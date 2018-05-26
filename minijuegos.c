@@ -4,6 +4,12 @@
 #include <time.h>
 #include <conio.h>//La funcion getche() lee caracter a caracter y muestra por pantalla el caracter leido.
 #include <string.h>
+	typedef struct
+{
+char nombre[50], pregunta[50], experiencia[10] , ganar[10];
+int matricula, edad;
+}
+ficha;
 // esta funcion la voy a usar en la flota pero os la dejo aqui para el stop
 void wait(int seconds) // Funcion que empieza a contar el tiempo desde que el programa se enciende
 {
@@ -17,7 +23,7 @@ void wait(int seconds) // Funcion que empieza a contar el tiempo desde que el pr
 void imprimir();
 void ataques();
 //_________________________________________________________________________________________________________
-// VARIABLES GENERALES DE LA FLOTA
+// VARIABLES DE LA FLOTA QUE VOY A USAR EN TODO
 int i, j, k, jugador[6][10], programa[6][10], opcion1, opcion2, puntajeprograma=0,puntajejugador=0;
 time_t start,end;
 double dif, tiempototal=0;
@@ -33,7 +39,45 @@ int c,b;
 	printf("MINIJUEGOS\n\n");
 	printf("NOTA: CUALQUIERA DE LOS JUEGOS PUEDE PEDIRLE AL USUARIO UN REGISTRO PREVIO.\n\n\n");
 	printf("AHORCADO\t\t\tHUNDIR LA FLOTA\t\t\tSTOP\n\n\n");
-	
+//VARIABLES DEL STOP
+clock_t inicio,fin;
+	int puntuacion=0;
+	char ultimaletra;
+	char nombre[25],apellido[25],color[25],animal[25],pais[25],marca[25];
+    char *nombre1 = nombre;
+	char *apellido1 = apellido;
+	char *color1 = color;
+	char *animal1 = animal;
+	char *pais1 = pais;
+char *marca1 = marca;
+
+ficha usuario;
+char opcion;
+FILE *pf;
+pf=fopen("usuario.txt", "wb");
+do
+    {
+		fflush(stdin);
+		     printf("\nNombre de usuario: ");
+		gets(usuario.nombre);
+		     printf("\n¿Has jugado alguna vez?: ");
+		gets(usuario.pregunta);
+		     printf("\n¿Te ves capacitado para pasar la mejor experiencia de tu vida?:");
+		gets(usuario.experiencia);
+		     printf("\nGanarás....? ");
+		gets(usuario.ganar);
+		     printf("\nEdad: ");
+		scanf("%d", &usuario.edad);
+		     printf("\nNumero de matricula: ");
+		scanf("%d", &usuario.matricula);
+		fwrite(&usuario, sizeof(ficha), 1, pf);
+		fflush(stdin);
+		     printf("\nMas usuarios (s/n)?\n");
+		scanf("%c", &opcion);
+    }
+while (opcion=='s');
+fclose(pf);
+	system("cls"); // Limpia la pantalla
 do 
 {
 	b=1;
@@ -54,8 +98,166 @@ do
 				printf("A cada ronda, los jugadores escogerán simultáneamente una letra que crean que pueda formar parte de la palabra.");
 				printf("Si la palabra contiene la letra escogida, se mostrará en qué posición/es está.\n");
 				printf("En el caso de que la letra no exista en la palabra, se dibujará una parte del cuerpo del muñeco del jugador. \nCuando estén dibujadas las 6 partes del cuerpo del muñeco, el jugador se quedará fuera de la partida.");
-			}
+		        printf("\n\n\n\t\tPulse 1 para jugar\n\n\n\t\tPulse 2 para salir\n");
+		        scanf("%i", &c);
+		        
 
+			char palabra[15],rep[60],tmp[100];
+			char matriz[9][7]={
+			 "____",
+			 "|  |",
+			 "|  |",
+			 "|   ",
+			 "|   ",
+			 "|   ",
+			 "|   ",
+			 "|   ",
+			 "----",
+			};
+				typedef struct
+				{
+			int pos;
+			int j;
+			char c;
+			} cuerpo;
+			{
+			
+			    char lt;
+			    int longi,i,n,r,k,j,inicio,correcto=0,temp=0,oportunidades=7;
+			    int repetido=0,gano=0;
+			    cuerpo o[] ={
+							{3, 3, 'O'},
+							{4, 3,'|'}, 
+							{4, 2,'/'},
+							{4, 4,'\\'},
+							{5, 3, '|'},
+							{6, 2,'/'},
+							{6, 4,'\\'}
+							};
+			
+			    printf("\tEl Ahorcado\n");
+			    printf("Introduzca la palabra que quiere adivinar: \n");
+			    for(i=0;i<9;i++){
+					printf("%s\n",matriz[i]);
+				}
+			
+				gets(palabra);
+			    
+			    longi = 0;
+			    inicio = 0;
+			    k = 0;
+			    
+			    rep[0] = ' ';
+			    rep[1] = '\0';
+			    
+			    printf("Introduzca una letra:");
+			    scanf("\n%c",&lt);
+			    do {
+			        temp = 0;
+			        tmp[0]=0;
+			    
+			        if(inicio == 0) 
+					{
+			         for(i=0;i<strlen(palabra);i++) 
+					 {
+			          if(palabra[i] == ' ') {
+			            palabra[i] = ' ';
+			             longi++;
+			          }
+			          else {
+			             tmp[i] = '_';        
+			             longi++;
+			          }
+			         }
+			        }
+			    
+			        inicio = 1;
+			        
+			        tmp[longi] = '\0';
+			        
+			        for(i=0;i<strlen(rep);i++) {
+			           if(rep[i] == lt) {
+			            repetido = 1;
+			            break;
+			          } 
+			          else {
+			           repetido = 0;
+			         }
+			        }
+			        
+			        if(repetido == 0) {
+			         for(i=0;i<strlen(palabra);i++) {
+			                    if(palabra[i] == lt) {
+			             tmp[i] = lt;
+			              correcto++;
+			              temp = 1;
+			            } 
+			          }
+			        }
+			        
+			        if(repetido == 0) {
+			         if(temp == 0) {
+			           matriz[o[7-oportunidades].pos][o[7-oportunidades].j] = o[7-oportunidades].c;
+			           oportunidades = oportunidades - 1;
+			         }
+			        }
+			        else {
+			         printf("este caracter esta repetido");
+			         printf("\n\n");
+			        }
+			        
+			        printf("\n");
+			        
+			        for(i=0;i<strlen(tmp);i++) {
+			         printf(" %c ",tmp[i]);
+			        }
+			        
+			        printf("\n");
+			        
+			        if(strcmp(palabra,tmp) == 0) {
+			            gano = 1;
+			            break;
+			        }
+			        
+			        printf("\n");
+			        printf("Letras Acertadas: %d",correcto);
+			        printf("\n");
+			        printf("Oportunidades Restantes: %d",oportunidades);
+			        printf("\n");
+			    
+			        rep[j] = lt;
+			        k++;
+			        
+			        if (oportunidades==0)
+			        {
+			           break;
+			        } 
+			      	for(i=0;i<9;i++){
+					printf("%s\n",matriz[i]);
+					}
+			        printf("Introduzca una letra:");
+			        scanf("\n%c",&lt);
+			       
+			    }while(oportunidades != 0); 
+			    
+			    
+			    if(gano) {
+			                printf("\n\n");
+			        printf("Te has pasado el juego");
+			    }
+			    else {
+			                printf("\n\n");
+			        for(i=0;i<9;i++){
+					printf("%s\n",matriz[i]);
+					}
+			        printf("Game over");
+			    }
+			    
+			    printf("\n\n");
+			    return 0;
+			
+			}  
+	    	}
 			break;
 		case 'H':
 		case 'h':
@@ -177,8 +379,79 @@ do
 			if(r=='R')
 			{
 			 printf("El objetivo del juego será obtener la mayor puntuación posible.\n Aparecerá una letra aleatoria y el jugador deberá escribir una palabra de cada categoría\n");
-			 printf("La palabra introducida por el jugador será puntuada si el prograa la considera apta");
+			 printf("La palabra introducida por el jugador será puntuada si el programa la considera apta");
 			}
+			//while(1)
+						//{
+					time(&start); //Empieza a contar el tiempo
+						printf("¿Estas preparado...?\n");
+					srand(time(NULL));
+					ultimaletra='a'+(rand()%(('z'-'a')+1));//La letra la elige el ordenador al azar
+						printf("La letra es:%c\n",ultimaletra);
+						printf("Date prisa,solo tienes 100 segundos!!\n");
+						printf("\nNombre:"); 
+					gets(nombre);
+					inicio=clock();
+						printf ( " \n Tiempo transcurrido = % .1f segundos \n " , (inicio)/(double)CLOCKS_PER_SEC);
+						
+						printf("\nApellido:");
+					gets(apellido);
+					inicio=clock();
+						printf ( " \n Tiempo transcurrido = % .1f segundos \n " , (inicio)/(double)CLOCKS_PER_SEC);
+						
+						printf("\nColor:");
+					gets(color);
+					inicio=clock();
+						printf ( " \n Tiempo transcurrido = % .1f segundos \n " , (inicio)/(double)CLOCKS_PER_SEC);
+						
+						printf("\nAnimal:");
+					gets(animal);
+					inicio=clock();
+						printf ( " \n Tiempo transcurrido = % .1f segundos \n " , (inicio)/(double)CLOCKS_PER_SEC);	
+						
+						printf("\nPais:");
+					gets(pais);
+					inicio=clock();
+						printf ( " \n Tiempo transcurrido = % .1f segundos \n " , (inicio)/(double)CLOCKS_PER_SEC);
+						
+						printf("\nMarca:");
+					gets(marca);
+				    fin=clock();
+				    
+				    printf ( " \n Tiempo transcurrido = % .1f segundos \n " , (fin)/(double)CLOCKS_PER_SEC);
+						if(*nombre1 == ultimaletra)
+						puntuacion=puntuacion+1;
+					
+					if(*apellido1 == ultimaletra)
+					puntuacion=puntuacion+1;
+					
+					    if(*color1 == ultimaletra)
+					puntuacion=puntuacion+1;
+					
+					    if(*animal1 == ultimaletra)
+					puntuacion=puntuacion+1;
+					
+					    if(*pais1 == ultimaletra)
+					puntuacion=puntuacion+1;
+					
+					    if(*marca1 == ultimaletra)
+					puntuacion=puntuacion+1;
+					
+					fflush(stdin);
+						if(fin<=10)
+						    {
+							printf("Tu puntuacion total es:%i\n",puntuacion);
+							}	
+						else
+						    {
+								
+								printf("\nHay que ser mas rapido PUNTUACION=0\n");
+						    }
+						
+						
+					time(&end); //El tiempo se para
+					printf("Pulsa enter para empezar otra ronda:");
+				gets(nombre);
 			break;
 		default: 
 		    printf("Error. pulse de nuevo la tecla\n");
@@ -333,8 +606,4 @@ void ataques()
         system("cls");//borro la pantalla
                                                          
     }  
-     
 }
-
-
-
