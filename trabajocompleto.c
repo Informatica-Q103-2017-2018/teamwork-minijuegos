@@ -56,7 +56,7 @@ setlocale(LC_CTYPE,"Spanish");// esto tambien es para poner las tildes
 int c,b;
 //VARIABLES DEL AHORCADO
 char lt;
-    int longi,inicio,correcto=0,temp=0,oportunidades=7;
+    int longi,inicioo,correcto=0,temp=0,oportunidades=7;
     int repetido=0,gano=0;
     cuerpo o[] ={{3, 3, 'O'},{4, 3,'|'}, {4, 2,'/'},
 {4, 4,'\\'},{5, 3, '|'},{6, 2,'/'},{6, 4,'\\'}};
@@ -65,7 +65,7 @@ char lt;
  int  auxiliar, destruidosprograma=0, destruidosjugador=0;
 //_________________________________________________________________________________________________________________
 //VARIABLES DEL STOP
-clock_t inicioo,fin;
+clock_t inicio,fin;
 	int puntuacion=0;
 	char ultimaletra;
 	char nombre[25],apellido[25],color[25],animal[25],pais[25],marca[25];
