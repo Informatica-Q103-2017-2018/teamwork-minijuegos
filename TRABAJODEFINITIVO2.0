@@ -72,7 +72,7 @@ char lt;
  int  auxiliar, destruidosprograma=0, destruidosjugador=0;
 //_________________________________________________________________________________________________________________
 //VARIABLES DEL STOP
-clock_t inicioo,fin;
+clock_t inicio,fin;
 	int puntuacion=0;
 	char ultimaletra;
 	char nombre[25],apellido[25],color[25],animal[25],pais[25],marca[25];
