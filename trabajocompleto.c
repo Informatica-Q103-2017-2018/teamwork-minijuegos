@@ -311,11 +311,11 @@ do
 					                   programa[opcion1][opcion2]=2;// has destruido uno de los barcos del programa
 					                   destruidosprograma=destruidosprograma+1;// sumamos un barco destruido del programa
 					                   puntajejugador=puntajejugador+200;// sumamos tu puntuacion
-					                   printf("\n Haz acertado!!\n\n");
+					                   printf("\n Has acertado!!\n\n");
 					               }
 						         else
 						            {
-						               printf("\n Haz fallado...\n\n");
+						               printf("\n Has fallado...\n\n");
 						            }
 						                               
 				               system("PAUSE");
@@ -323,17 +323,16 @@ do
 				               if(destruidosprograma==5)// si destruyes todos los barcos del oponente has ganado
 				               {
 				                   fflush (stdin);// vuelvo a borrar porque sino no me aparece el printf
-				                   printf("\n\n\n\n\t\t\tHAZ GANADO!!");
+				                   printf("\n\n\n\n\t\t\tHAS GANADO!!");
 				                   getche();
 				               }                                                                
 				               imprimir();
 				                               
-				               printf(" Turno del oponente!~\n\n");
+				               printf(" Turno del oponente!\n\n");
 				               wait(2);
 				               
-				               jugador[i][j]=3;
-				               opcion1=i;
-				               opcion2=j;
+				               auxiliar=jugador[opcion1][opcion2];
+                               jugador[opcion1][opcion2]=3;
 				               imprimir();
 				               jugador[opcion1][opcion2]=auxiliar;
 				             
