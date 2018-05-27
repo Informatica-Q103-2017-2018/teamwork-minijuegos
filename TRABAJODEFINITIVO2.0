@@ -56,7 +56,7 @@ setlocale(LC_CTYPE,"Spanish");// esto tambien es para poner las tildes
 int c,b;
 //VARIABLES DEL AHORCADO
 char lt;
-    int longi,inicio,correcto=0,temp=0,oportunidades=7;
+    int longi,inicioo,correcto=0,temp=0,oportunidades=7;
     int repetido=0,gano=0;
     cuerpo o[] ={
 				{3, 3, 'O'},
@@ -149,7 +149,7 @@ do
 			gets(palabra);
 		    
 		    longi = 0;
-		    inicio = 0;
+		    inicioo = 0;
 		    k = 0;
 		    
 		    rep[0] = ' ';
@@ -161,7 +161,7 @@ do
 		        temp = 0;
 		        tmp[0]=0;
 		    
-		        if(inicio == 0) 
+		        if(inicioo == 0) 
 				{
 		         for(i=0;i<strlen(palabra);i++) 
 				 {
