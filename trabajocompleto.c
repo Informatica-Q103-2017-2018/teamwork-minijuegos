@@ -274,9 +274,9 @@ do
                   { 
                      case 1:
                      {
-                     	ataques(); // Llama a la funcion iniciar
+                     	ataques(); // Llama a la funcion para iniciar los ataques
                         printf("\n\n\n\t\t Preparado?\n\n");
-                        wait(3);
+                        wait(3);// espera tres segundos
                              
                           do
                           {
@@ -285,18 +285,18 @@ do
                                
                              imprimir();
                                
-                             printf(" Es tu turno! Dame la posicion que deseas atacar~\n\n");
-                             printf("\tX = ");
+                             printf(" Es tu turno! Dame la posicion que deseas atacar\n\n");
+                             printf("\tX = ");//introduce la coordenada x
                              scanf("%d", &opcion2);
-                                 while(opcion2<1 || opcion2>9)
+                                 while(opcion2<1 || opcion2>9)// comprueba que estas en las regiones del tablero
                                  {
-                                   printf("\n    Escoje un valor valido ( 1 a 9 )\n\n\tX = ");
+                                   printf("\n    Escoje un valor valido ( 1 a 9 )\n\n\tX = ");// si no lo estas te vuelve a pedir la coordenada
                                   scanf("%d", &opcion2);
                                  }
                                
-                             printf("\tY = ");
+                             printf("\tY = ");// ahora hago lo mismo con la coordenada y
                              scanf("%d", &opcion1);
-                                 while(opcion1<1 || opcion1>5)
+                                 while(opcion1<1 || opcion1>5)// y vuelvo a comprobar que estes dentro del tablero
                                  {
                                    printf("\n    Escoje un valor valido ( 1 a 5 )\n\n\tY = ");
                                    scanf("%d", &opcion1);
@@ -328,8 +328,8 @@ do
 				               }                                                                
 				               imprimir();
 				                               
-				               printf(" Turno del oponente!\n\n");
-				               wait(2);
+				               printf(" Turno del oponente!\n\n");// turno del programa 
+				               wait(1);
 				               
 				               auxiliar=jugador[opcion1][opcion2];
                                jugador[opcion1][opcion2]=3;
@@ -339,15 +339,15 @@ do
 				               if(jugador[opcion1][opcion2]==1)
 				               {
 				                   printf("\n El oponente ha acertado!!\n\n");
-				                   jugador[opcion1][opcion2]=2;
-				                   destruidosjugador=destruidosjugador+1;
-				                   puntajeprograma=puntajeprograma+200;
+				                   jugador[opcion1][opcion2]=2;//el oponente ha acertado
+				                   destruidosjugador=destruidosjugador+1;// se suma un baco del jugador destruido
+				                   puntajeprograma=puntajeprograma+200;// se suma a la puntuacion del programa
 				               }
 				               else
 				               {
 				                   printf("\n El oponente ha fallado...\n\n");
 				               }
-				               if(destruidosjugador==5)
+				               if(destruidosjugador==5)// si te han destruido los cinco barcos has perdido y gana el programa
 				               {    
 							       fflush(stdin);// vuelvo a borrar porque sino no me aparece el printf                                        
 				                   printf("\n\nHAS PERDIDO!!");
@@ -357,11 +357,11 @@ do
 				               system("PAUSE");
 				               time(&end);
                              }
-                         while(destruidosprograma<5 || destruidosjugador<5);       	
+                         while(destruidosprograma<5 || destruidosjugador<5);  // si ya hay un ganador se acaba el programa     	
                     break;
                      }
                      case 2:
-                     	return 0;
+                     	return 0;// si eliges salir se acaba el programa
                     break;
 		           }
 		    
@@ -569,20 +569,20 @@ void ataques()
                        
         printf("\n\tX%d = ", k);
         scanf("%d", &opcion2);
-        while(opcion2<1 || opcion2>9) //le vuelvo a pedir la coordenada x porque se ha salido del tablero
-        {
-            printf("Escoja un valor valido ( 1 a 9 )\n\n\tX%d = ", k);
-            scanf("%d", &opcion2);
-        }
-                         
+	        while(opcion2<1 || opcion2>9) //le vuelvo a pedir la coordenada x porque se ha salido del tablero
+	        {
+	            printf("Escoja un valor valido ( 1 a 9 )\n\n\tX%d = ", k);
+	            scanf("%d", &opcion2);
+	        }
+	                         
         printf("\n\tY%d = ", k);
         scanf("%d", &opcion1);
-        while(opcion1<1 || opcion1>5)//le vuelvo a pedir la coordenada y porque se ha salido del tablero
-        {
-            printf("\nEscoja un valor valido( 1 a 5 )\n\n\tY%d = ", k);
-            scanf("%d", &opcion1);
-        }
-                         
+	        while(opcion1<1 || opcion1>5)//le vuelvo a pedir la coordenada y porque se ha salido del tablero
+	        {
+	            printf("\nEscoja un valor valido( 1 a 5 )\n\n\tY%d = ", k);
+	            scanf("%d", &opcion1);
+	        }
+	                         
         if(jugador[opcion1][opcion2]==1)
         {
         	fflush(stdin);// vuelvo a borrar porque sino no me aparece el printf
